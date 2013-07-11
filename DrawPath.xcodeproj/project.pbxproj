@@ -19,6 +19,17 @@
 		2FADD7C6178ED6C900CAB0EB /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FADD7C4178ED6C900CAB0EB /* MainStoryboard_iPhone.storyboard */; };
 		2FADD7C9178ED6C900CAB0EB /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FADD7C7178ED6C900CAB0EB /* MainStoryboard_iPad.storyboard */; };
 		2FADD7CC178ED6C900CAB0EB /* DPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FADD7CB178ED6C900CAB0EB /* DPViewController.m */; };
+		2FADD7D4178EDCC600CAB0EB /* dp-icon-57.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FADD7D3178EDCC600CAB0EB /* dp-icon-57.png */; };
+		2FADD7D6178EDCCA00CAB0EB /* dp-icon-114.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FADD7D5178EDCCA00CAB0EB /* dp-icon-114.png */; };
+		2FADD7D8178EDCD100CAB0EB /* dp-icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FADD7D7178EDCD100CAB0EB /* dp-icon-72.png */; };
+		2FADD7DA178EDCD500CAB0EB /* dp-icon-144.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FADD7D9178EDCD500CAB0EB /* dp-icon-144.png */; };
+		2FADD7DF178EDD5F00CAB0EB /* DPBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FADD7DE178EDD5F00CAB0EB /* DPBrick.m */; };
+		2FADD7E2178EDD7200CAB0EB /* DPMove.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FADD7E1178EDD7200CAB0EB /* DPMove.m */; };
+		2FADD7E5178EDE7900CAB0EB /* DPViewControllerGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FADD7E4178EDE7900CAB0EB /* DPViewControllerGame.m */; };
+		2FADD7EA178EDF3100CAB0EB /* DPBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FADD7E9178EDF3100CAB0EB /* DPBoard.m */; };
+		2FADD7EC178EE3F600CAB0EB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FADD7EB178EE3F600CAB0EB /* CoreData.framework */; };
+		2FADD7EE178EE3FC00CAB0EB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FADD7ED178EE3FC00CAB0EB /* SystemConfiguration.framework */; };
+		2FADD7F0178EE44400CAB0EB /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FADD7EF178EE44400CAB0EB /* CoreImage.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +50,22 @@
 		2FADD7C8178ED6C900CAB0EB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		2FADD7CA178ED6C900CAB0EB /* DPViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DPViewController.h; sourceTree = "<group>"; };
 		2FADD7CB178ED6C900CAB0EB /* DPViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DPViewController.m; sourceTree = "<group>"; };
+		2FADD7D3178EDCC600CAB0EB /* dp-icon-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dp-icon-57.png"; sourceTree = "<group>"; };
+		2FADD7D5178EDCCA00CAB0EB /* dp-icon-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dp-icon-114.png"; sourceTree = "<group>"; };
+		2FADD7D7178EDCD100CAB0EB /* dp-icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dp-icon-72.png"; sourceTree = "<group>"; };
+		2FADD7D9178EDCD500CAB0EB /* dp-icon-144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dp-icon-144.png"; sourceTree = "<group>"; };
+		2FADD7DD178EDD5F00CAB0EB /* DPBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPBrick.h; sourceTree = "<group>"; };
+		2FADD7DE178EDD5F00CAB0EB /* DPBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPBrick.m; sourceTree = "<group>"; };
+		2FADD7E0178EDD7200CAB0EB /* DPMove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPMove.h; sourceTree = "<group>"; };
+		2FADD7E1178EDD7200CAB0EB /* DPMove.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPMove.m; sourceTree = "<group>"; };
+		2FADD7E3178EDE7900CAB0EB /* DPViewControllerGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPViewControllerGame.h; sourceTree = "<group>"; };
+		2FADD7E4178EDE7900CAB0EB /* DPViewControllerGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPViewControllerGame.m; sourceTree = "<group>"; };
+		2FADD7E7178EDEF700CAB0EB /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		2FADD7E8178EDF3100CAB0EB /* DPBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPBoard.h; sourceTree = "<group>"; };
+		2FADD7E9178EDF3100CAB0EB /* DPBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPBoard.m; sourceTree = "<group>"; };
+		2FADD7EB178EE3F600CAB0EB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		2FADD7ED178EE3FC00CAB0EB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		2FADD7EF178EE44400CAB0EB /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +73,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FADD7F0178EE44400CAB0EB /* CoreImage.framework in Frameworks */,
+				2FADD7EE178EE3FC00CAB0EB /* SystemConfiguration.framework in Frameworks */,
+				2FADD7EC178EE3F600CAB0EB /* CoreData.framework in Frameworks */,
 				2FADD7AD178ED6C900CAB0EB /* UIKit.framework in Frameworks */,
 				2FADD7AF178ED6C900CAB0EB /* Foundation.framework in Frameworks */,
 				2FADD7B1178ED6C900CAB0EB /* CoreGraphics.framework in Frameworks */,
@@ -58,6 +88,10 @@
 		2FADD7A0178ED6C900CAB0EB = {
 			isa = PBXGroup;
 			children = (
+				2FADD7D9178EDCD500CAB0EB /* dp-icon-144.png */,
+				2FADD7D7178EDCD100CAB0EB /* dp-icon-72.png */,
+				2FADD7D5178EDCCA00CAB0EB /* dp-icon-114.png */,
+				2FADD7D3178EDCC600CAB0EB /* dp-icon-57.png */,
 				2FADD7B2178ED6C900CAB0EB /* DrawPath */,
 				2FADD7AB178ED6C900CAB0EB /* Frameworks */,
 				2FADD7AA178ED6C900CAB0EB /* Products */,
@@ -75,6 +109,9 @@
 		2FADD7AB178ED6C900CAB0EB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2FADD7EF178EE44400CAB0EB /* CoreImage.framework */,
+				2FADD7ED178EE3FC00CAB0EB /* SystemConfiguration.framework */,
+				2FADD7EB178EE3F600CAB0EB /* CoreData.framework */,
 				2FADD7AC178ED6C900CAB0EB /* UIKit.framework */,
 				2FADD7AE178ED6C900CAB0EB /* Foundation.framework */,
 				2FADD7B0178ED6C900CAB0EB /* CoreGraphics.framework */,
@@ -85,6 +122,10 @@
 		2FADD7B2178ED6C900CAB0EB /* DrawPath */ = {
 			isa = PBXGroup;
 			children = (
+				2FADD7E6178EDEE300CAB0EB /* Config */,
+				2FADD7DC178EDCE300CAB0EB /* ViewControllerClasses */,
+				2FADD7DB178EDCDB00CAB0EB /* Domain */,
+				2FADD7D2178EDC2B00CAB0EB /* Assets */,
 				2FADD7BB178ED6C900CAB0EB /* DPAppDelegate.h */,
 				2FADD7BC178ED6C900CAB0EB /* DPAppDelegate.m */,
 				2FADD7C4178ED6C900CAB0EB /* MainStoryboard_iPhone.storyboard */,
@@ -108,6 +149,43 @@
 				2FADD7C2178ED6C900CAB0EB /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2FADD7D2178EDC2B00CAB0EB /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
+		2FADD7DB178EDCDB00CAB0EB /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				2FADD7DD178EDD5F00CAB0EB /* DPBrick.h */,
+				2FADD7DE178EDD5F00CAB0EB /* DPBrick.m */,
+				2FADD7E0178EDD7200CAB0EB /* DPMove.h */,
+				2FADD7E1178EDD7200CAB0EB /* DPMove.m */,
+				2FADD7E8178EDF3100CAB0EB /* DPBoard.h */,
+				2FADD7E9178EDF3100CAB0EB /* DPBoard.m */,
+			);
+			name = Domain;
+			sourceTree = "<group>";
+		};
+		2FADD7DC178EDCE300CAB0EB /* ViewControllerClasses */ = {
+			isa = PBXGroup;
+			children = (
+				2FADD7E3178EDE7900CAB0EB /* DPViewControllerGame.h */,
+				2FADD7E4178EDE7900CAB0EB /* DPViewControllerGame.m */,
+			);
+			name = ViewControllerClasses;
+			sourceTree = "<group>";
+		};
+		2FADD7E6178EDEE300CAB0EB /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				2FADD7E7178EDEF700CAB0EB /* Constants.h */,
+			);
+			name = Config;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -168,6 +246,10 @@
 				2FADD7C3178ED6C900CAB0EB /* Default-568h@2x.png in Resources */,
 				2FADD7C6178ED6C900CAB0EB /* MainStoryboard_iPhone.storyboard in Resources */,
 				2FADD7C9178ED6C900CAB0EB /* MainStoryboard_iPad.storyboard in Resources */,
+				2FADD7D4178EDCC600CAB0EB /* dp-icon-57.png in Resources */,
+				2FADD7D6178EDCCA00CAB0EB /* dp-icon-114.png in Resources */,
+				2FADD7D8178EDCD100CAB0EB /* dp-icon-72.png in Resources */,
+				2FADD7DA178EDCD500CAB0EB /* dp-icon-144.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,6 +263,10 @@
 				2FADD7B9178ED6C900CAB0EB /* main.m in Sources */,
 				2FADD7BD178ED6C900CAB0EB /* DPAppDelegate.m in Sources */,
 				2FADD7CC178ED6C900CAB0EB /* DPViewController.m in Sources */,
+				2FADD7DF178EDD5F00CAB0EB /* DPBrick.m in Sources */,
+				2FADD7E2178EDD7200CAB0EB /* DPMove.m in Sources */,
+				2FADD7E5178EDE7900CAB0EB /* DPViewControllerGame.m in Sources */,
+				2FADD7EA178EDF3100CAB0EB /* DPBoard.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
