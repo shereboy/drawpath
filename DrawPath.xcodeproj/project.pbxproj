@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F6B3D11178F095D00F7078D /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F6B3D10178F095D00F7078D /* Reachability.m */; };
 		2F897F9D178EE6DB00295803 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F897F98178EE6DB00295803 /* bg.png */; };
 		2F897F9E178EE6DB00295803 /* box_bg_300x380.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F897F99178EE6DB00295803 /* box_bg_300x380.png */; };
 		2F897F9F178EE6DB00295803 /* btn-hover.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F897F9A178EE6DB00295803 /* btn-hover.png */; };
@@ -38,6 +39,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2F6B3D0F178F095D00F7078D /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		2F6B3D10178F095D00F7078D /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		2F897F98178EE6DB00295803 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
 		2F897F99178EE6DB00295803 /* box_bg_300x380.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = box_bg_300x380.png; sourceTree = "<group>"; };
 		2F897F9A178EE6DB00295803 /* btn-hover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-hover.png"; sourceTree = "<group>"; };
@@ -169,6 +172,8 @@
 		2FADD7B3178ED6C900CAB0EB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2F6B3D0F178F095D00F7078D /* Reachability.h */,
+				2F6B3D10178F095D00F7078D /* Reachability.m */,
 				2FADD7B4178ED6C900CAB0EB /* DrawPath-Info.plist */,
 				2FADD7B5178ED6C900CAB0EB /* InfoPlist.strings */,
 				2FADD7B8178ED6C900CAB0EB /* main.m */,
@@ -303,6 +308,7 @@
 				2FADD7E2178EDD7200CAB0EB /* DPMove.m in Sources */,
 				2FADD7E5178EDE7900CAB0EB /* DPViewControllerGame.m in Sources */,
 				2FADD7EA178EDF3100CAB0EB /* DPBoard.m in Sources */,
+				2F6B3D11178F095D00F7078D /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

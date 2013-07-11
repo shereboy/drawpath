@@ -12,8 +12,6 @@
 @interface DPViewControllerGame : UIViewController
 
 @property (strong, nonatomic) NSMutableArray *BrickStack;
-@property (strong, nonatomic) NSMutableArray *InitialBrickStack;
-@property (strong, nonatomic) NSTimer *BrickTimer;
 @property (strong, nonatomic) DPBoard *MainBoard;
 
 @end

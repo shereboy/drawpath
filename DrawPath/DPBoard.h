@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DPBoard : NSObject
+@interface DPBoard : UIView
 
-@property (strong,nonatomic) NSArray* colorArray ;
-@property (strong, nonatomic) NSMutableArray* initialBricksArray;
+@property (strong,nonatomic) NSArray *colorArray ;
+@property (strong, nonatomic) NSMutableArray *initialBricksArray;
+@property (strong, nonatomic) NSTimer *brickTimer;
+@property(strong,nonatomic) UIView *parentView;
 
--(void) drawBoard;
-
+-(void) drawBoard:(id)parent;
++(void) hoverBrick:(id)sender;
 @end

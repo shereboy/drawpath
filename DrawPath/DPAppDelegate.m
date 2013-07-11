@@ -7,12 +7,26 @@
 //
 
 #import "DPAppDelegate.h"
+#import "Reachability.h"
 
 @implementation DPAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+  
+  // NETWORK STATUS
+  
+  NetworkStatus networkStatus = [[Reachability reachabilityForInternetConnection] currentReachabilityStatus];
+  
+  if (networkStatus == NotReachable)
+  {
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"internete bagli degil" message:@"Internet Baglantisi Gerekiyor" delegate:nil cancelButtonTitle:@"Tamam" otherButtonTitles: nil];
+    [alert show];
+    
+  }
+  
     return YES;
 }
 							

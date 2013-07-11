@@ -86,17 +86,6 @@
         <image name="btn.png" width="236" height="54"/>
         <image name="logo.png" width="256" height="57"/>
     </resources>
-    <classes>
-        <class className="DPViewControllerGame" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DPViewControllerGame.h"/>
-            <relationships>
-                <relationship kind="action" name="rectClicked:"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
