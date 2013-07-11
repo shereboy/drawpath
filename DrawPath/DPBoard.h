@@ -11,5 +11,8 @@
 @interface DPBoard : NSObject
 
 @property (strong,nonatomic) NSArray* colorArray ;
+@property (strong, nonatomic) NSMutableArray* initialBricksArray;
+
+-(void) drawBoard;
 
 @end

@@ -11,6 +11,7 @@
 #import "Constants.h"
 #import "DPBrick.h"
 #import "DPMove.h"
+#import "DPBoard.h"
 
 @interface DPViewControllerGame ()
 
@@ -21,6 +22,7 @@
 @synthesize BrickStack;
 @synthesize InitialBrickStack;
 @synthesize BrickTimer;
+@synthesize MainBoard;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -43,7 +45,17 @@
 
 - (void) viewDidAppear:(BOOL)animated
 {
-  [self drawBoard];
+  MainBoard = [DPBoard alloc];
+  [MainBoard init];
+  [MainBoard drawBoard];
+  
+  BrickTimer = [NSTimer scheduledTimerWithTimeInterval:ANIMATION_DURATION
+                                                target:self
+                                              selector:@selector(drawRectangleFromStack:)
+                                              userInfo:nil
+                                               repeats:YES
+    ];
+ // [self drawBoard];
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,62 +66,24 @@
 
 #pragma mark CUSTOM METHODS
 
--(void) drawBoard
-{
-  NSArray* colorArray =[NSArray arrayWithObjects:[UIColor redColor],[UIColor blueColor],[UIColor greenColor],[UIColor yellowColor],[UIColor orangeColor], nil];
-  
-  for (int i = 0; i<ROW_COUNT ; i++) {
-    for (int j = 0; j<COL_COUNT; j++)
-    {
-      if (j !=0 && j%COL_COUNT == 0) continue;
-      else
-      {
-        NSUInteger randomIndex = arc4random() % [colorArray count];
-        DPBrick *brick = [DPBrick alloc];
-        
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-          brick.frameX=(j*IPAD_BOX_WIDTH+FRAME_LEFT_PADDING);
-          brick.frameY=(i*IPAD_BOX_HEIGHT+FRAME_TOP_PADDING);
-        }
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-          brick.frameX=(j*BOX_WIDTH+FRAME_LEFT_PADDING);
-          brick.frameY=(i*BOX_HEIGHT+FRAME_TOP_PADDING);
-        }
-        
-        
-        
-        brick.assignedColor = colorArray[randomIndex];
-        brick.rowNumber = i;
-        brick.colNumber = j;
-        [InitialBrickStack addObject:brick];
-        //[self drawRectangle:i*50+FRAME_LEFT_PADDING :j*50+FRAME_TOP_PADDING :colorArray[randomIndex]:i:j];
-      }
-    }
-  }
-  
-  
-  BrickTimer = [NSTimer scheduledTimerWithTimeInterval:ANIMATION_DURATION
-                                                target:self
-                                              selector:@selector(drawRectangleFromStack:)
-                                              userInfo:nil
-                                               repeats:YES
-                ];
-  
-}
 
 -(void) drawRectangleFromStack :(id) sender
 {
   NSLog(@"TIMER WORKING");
-  if ([InitialBrickStack count] > 0)
+  if ([MainBoard.initialBricksArray count] > 0)
   {
-    DPBrick *brick = [self.InitialBrickStack objectAtIndex:[self.InitialBrickStack count]-1];
+    DPBrick *brick = [MainBoard.initialBricksArray objectAtIndex:[MainBoard.initialBricksArray count]-1];
     [self drawRectangle:brick.frameX:brick.frameY :brick.assignedColor:brick.rowNumber:brick.colNumber];
     
     
-    [InitialBrickStack removeLastObject];
+    [MainBoard.initialBricksArray removeLastObject];
   }
   else
   {
+    
+       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Oynamaya Hazır mısın?" delegate:nil cancelButtonTitle:@"Başla" otherButtonTitles: nil];
+    [alert show];
+    
     [self.BrickTimer invalidate];
     self.BrickTimer = nil;
   }
@@ -160,8 +134,6 @@
                      //[self.car removeFromSuperview];
                    }
    ];
-  
-  //[view addTarget:self action:@selector(rectClicked:) forControlEvents:UIControlEventTouchDragInside];
   [self.view addSubview:thisBrick];
 }
 
