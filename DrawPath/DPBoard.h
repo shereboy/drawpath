@@ -14,6 +14,8 @@
 @property (strong, nonatomic) NSMutableArray *initialBricksArray;
 @property (strong, nonatomic) NSTimer *brickTimer;
 @property(strong,nonatomic) UIView *parentView;
+@property int brickWidth;
+@property int brickHeight;
 
 -(void) drawBoard:(id)parent;
 +(void) hoverBrick:(id)sender;

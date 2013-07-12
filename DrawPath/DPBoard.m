@@ -16,6 +16,8 @@
 @synthesize initialBricksArray;
 @synthesize brickTimer;
 @synthesize parentView;
+@synthesize brickWidth;
+@synthesize brickHeight;
 
 
 -(id)init
@@ -24,6 +26,15 @@
   {
    self.initialBricksArray = [[NSMutableArray alloc] init];
    self.colorArray =[NSArray arrayWithObjects:[UIColor redColor],[UIColor blueColor],[UIColor greenColor],[UIColor yellowColor],[UIColor orangeColor], nil];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+      self.brickWidth = BOX_WIDTH;
+      self.brickHeight = BOX_HEIGHT;
+    }
+    else
+    {
+      self.brickWidth = IPAD_BOX_WIDTH;
+      self.brickHeight = IPAD_BOX_HEIGHT;
+    }
   }
   return self;
 }
@@ -41,14 +52,9 @@
         NSUInteger randomIndex = arc4random() % [self.colorArray count];
         DPBrick *brick = [DPBrick alloc];
         
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-          brick.frameX=(j*IPAD_BOX_WIDTH+FRAME_LEFT_PADDING);
-          brick.frameY=(i*IPAD_BOX_HEIGHT+FRAME_TOP_PADDING);
-        }
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-          brick.frameX=(j*BOX_WIDTH+FRAME_LEFT_PADDING);
-          brick.frameY=(i*BOX_HEIGHT+FRAME_TOP_PADDING);
-        }
+        brick.frameX=(j*self.brickWidth+FRAME_LEFT_PADDING);
+        brick.frameY=(i*self.brickHeight+FRAME_TOP_PADDING);
+        
         brick.assignedColor = colorArray[randomIndex];
         brick.rowNumber = i;
         brick.colNumber = j;
@@ -57,10 +63,10 @@
     }
   }
   self.brickTimer = [NSTimer scheduledTimerWithTimeInterval:ANIMATION_DURATION
-                                                target:self
-                                              selector:@selector(drawRectangleFromStack:)
-                                              userInfo:nil
-                                               repeats:YES
+                                                     target:self
+                                                   selector:@selector(drawRectangleFromStack:)
+                                                   userInfo:nil
+                                                    repeats:YES
                      ];
   
 }

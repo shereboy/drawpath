@@ -76,7 +76,7 @@
       else
       {
         [self.BrickStack addObject:brick];
-         [DPBoard hoverBrick:brick];
+        [DPBoard hoverBrick:brick];
       }
     }
   
@@ -84,12 +84,21 @@
 
 -(void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+  if([self.BrickStack count]>2)
+  {
+    for(DPBrick *brick in self.BrickStack)
+    {
+      //  brick.backgroundColor = brick.assignedColor;
+      [brick removeFromSuperview];
+    }
+  }
+  else
+    for(DPBrick *brick in self.BrickStack)
+    {
+      brick.backgroundColor = brick.assignedColor;
+    }
   
   [self.BrickStack removeAllObjects];
-  
-  for(DPBrick *brick in self.view.subviews)
-    if([brick isKindOfClass:[DPBrick class]])
-      brick.backgroundColor = brick.assignedColor;
 }
 
 @end
