@@ -35,12 +35,14 @@
 {
   [super viewDidLoad];
   self.BrickStack = [[NSMutableArray alloc] init];
+  
 }
 
 - (void) viewDidAppear:(BOOL)animated
 {
   MainBoard = [DPBoard alloc];
   [MainBoard init];
+  [self.view addSubview:MainBoard];
   [MainBoard drawBoard:self.view] ;
   
   // [self drawBoard];
@@ -51,11 +53,11 @@
 -(void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
   UITouch *touch = [[event allTouches] anyObject];
-  CGPoint touchLocation = [touch locationInView:self.view];
+  CGPoint touchLocation = [touch locationInView:MainBoard];
   
-  NSLog( @"%@%f%@%f", @"Touch Oldu: ", touchLocation.x, @" - ", touchLocation.y );
+  //NSLog( @"%@%f%@%f", @"Touch Oldu: ", touchLocation.x, @" - ", touchLocation.y );
   
-  for(DPBrick *brick in self.view.subviews)
+  for(DPBrick *brick in MainBoard.subviews)
     if(CGRectContainsPoint(brick.frame,touchLocation) &&
        brick.backgroundColor != [UIColor blackColor] &&
        ![self.BrickStack containsObject:brick] &&
@@ -88,6 +90,7 @@
   {
     for(DPBrick *brick in self.BrickStack)
     {
+      [self.MainBoard addToDropArray2:brick];
       //  brick.backgroundColor = brick.assignedColor;
       [brick removeFromSuperview];
     }

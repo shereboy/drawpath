@@ -9,11 +9,14 @@
 #import "DPBoard.h"
 #import "Constants.h"
 #import "DPBrick.h"
+#import "DPDropBrick.h"
 
 @implementation DPBoard
 
 @synthesize colorArray;
 @synthesize initialBricksArray;
+@synthesize currentBricksArray;
+@synthesize dropBricksArray;
 @synthesize brickTimer;
 @synthesize parentView;
 @synthesize brickWidth;
@@ -25,6 +28,8 @@
   if (self = [super init])
   {
    self.initialBricksArray = [[NSMutableArray alloc] init];
+   self.currentBricksArray = [[NSMutableArray alloc] init];
+   self.dropBricksArray = [[NSMutableArray alloc] init];
    self.colorArray =[NSArray arrayWithObjects:[UIColor redColor],[UIColor blueColor],[UIColor greenColor],[UIColor yellowColor],[UIColor orangeColor], nil];
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
       self.brickWidth = BOX_WIDTH;
@@ -59,6 +64,7 @@
         brick.rowNumber = i;
         brick.colNumber = j;
         [self.initialBricksArray addObject:brick];
+        [self.currentBricksArray addObject:brick];
       }
     }
   }
@@ -101,13 +107,8 @@
 {
   
   DPBrick* thisBrick =[DPBrick alloc];
-  if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-    thisBrick =[[DPBrick alloc]initWithFrame:CGRectMake(x,y,IPAD_BOX_WIDTH,IPAD_BOX_HEIGHT)];
-  }
-  if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-    thisBrick =[[DPBrick alloc]initWithFrame:CGRectMake(x,y,BOX_WIDTH,BOX_HEIGHT)];
-  }
   
+  thisBrick =[[DPBrick alloc]initWithFrame:CGRectMake(x,y,self.brickWidth,self.brickHeight)];
   
   thisBrick.colNumber = colNumber;
   thisBrick.rowNumber = rowNumber;
@@ -134,7 +135,8 @@
                      //[self.car removeFromSuperview];
                    }
    ];
-  [parentView addSubview:thisBrick];
+  //[parentView addSubview:thisBrick];
+  [self addSubview:thisBrick];
 }
 
 +(void)hoverBrick:(id)sender{
@@ -147,5 +149,107 @@
   
 }
 
+-(void)addToDropArray :(id) sender: (id)array
+{
+  DPBrick *brick = (DPBrick *) sender;
+  NSMutableArray *currentBrickArray = (NSMutableArray *) array;
+  for(DPBrick* tmpBrick in currentBricksArray)
+  {
+  if(tmpBrick.colNumber == brick.colNumber && tmpBrick.rowNumber > brick.rowNumber)
+  {
+    tmpBrick.backgroundColor = [UIColor purpleColor];
+    BOOL isIncremented = NO;
+    for(DPDropBrick* dropBrick in dropBricksArray)
+    {
+      if (dropBrick.brickToDrop == brick)
+      {
+        dropBrick.stepsToDrop++;
+        isIncremented = YES;
+      }
+    }
+    if(!isIncremented)
+    {
+      DPDropBrick* tmpDropBrick = [DPDropBrick alloc];
+      tmpDropBrick.brickToDrop = brick;
+      tmpDropBrick.stepsToDrop = 1;
+      [dropBricksArray addObject: tmpDropBrick];
+      
+    }
+  }
+}
+  
+
+  
+[self dropBricks];
+  
+}
+
+
+-(void) addToDropArray2: (id) sender
+
+{
+  DPBrick *brick = (DPBrick *) sender;
+  for(DPBrick *tmpBrick in self.subviews)
+    if([tmpBrick isKindOfClass:[DPBrick class]])
+    {
+      if(tmpBrick.colNumber == brick.colNumber && tmpBrick.rowNumber < brick.rowNumber)
+      {  
+        BOOL isIncremented = NO;
+        for(DPDropBrick* dropBrick in dropBricksArray)
+        {
+          if(tmpBrick.colNumber == dropBrick.brickToDrop.colNumber &&
+             tmpBrick.rowNumber == dropBrick.brickToDrop.rowNumber)
+          {
+            dropBrick.stepsToDrop++;
+            dropBrick.brickToDrop.rowNumber++;
+            isIncremented = YES;
+          }
+        }
+        if(!isIncremented)
+        {
+          DPDropBrick* tmpDropBrick = [DPDropBrick alloc];
+          tmpDropBrick.brickToDrop = tmpBrick;
+          tmpDropBrick.stepsToDrop = 1;
+          tmpDropBrick.brickToDrop.rowNumber++;
+          [dropBricksArray addObject: tmpDropBrick];
+          
+        }
+      }
+    
+    }
+  
+  [self dropBricks];
+
+}
+
+
+
+-(void) dropBricks
+{
+  for(DPDropBrick* dropBrick in self.dropBricksArray)
+  {
+    CGPoint center = CGPointMake(dropBrick.brickToDrop.center.x,dropBrick.brickToDrop.center.y+BOX_HEIGHT*dropBrick.stepsToDrop);
+    
+    [UIView animateWithDuration: 0.5
+                     animations: ^{
+                       dropBrick.brickToDrop.center = center;
+                     }
+                     completion: ^(BOOL finished) {
+                     }
+     ];
+  }
+  [self.dropBricksArray removeAllObjects];
+}
+
+
+-(void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+  
+}
+
 
 @end
+
+
+
+
