@@ -18,6 +18,7 @@
 @property (strong, nonatomic) NSMutableArray *dropBricksArray;
 @property (strong, nonatomic) NSMutableArray *additionBricksArray;
 @property (strong, nonatomic) NSMutableArray *dropBrickCount;
+@property (strong, nonatomic) NSMutableArray *brickStack;
 @property (strong, nonatomic) NSTimer *brickTimer;
 @property(strong,nonatomic) UIView *parentView;
 @property int brickWidth;
@@ -30,4 +31,5 @@
 -(void)addToDropArray :(DPBrick*) brick;
 -(void)dropBricks;
 -(void) refreshBoard:(NSMutableArray*)brickStack;
+-(void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;
 @end

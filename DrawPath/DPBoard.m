@@ -10,6 +10,7 @@
 #import "Constants.h"
 #import "DPBrick.h"
 #import "DPDropBrick.h"
+#import "DPMove.h"
 
 @implementation DPBoard
 
@@ -24,11 +25,12 @@
 @synthesize brickHeight;
 @synthesize queueIndex;
 @synthesize counts;
+@synthesize brickStack;
 
 
 -(id)init
 {
-  if (self = [super init])
+  if (self = [super initWithFrame:CGRectMake(FRAME_LEFT_PADDING,FRAME_TOP_PADDING,COL_COUNT*BOX_HEIGHT,ROW_COUNT*BOX_WIDTH)])
   {
     self.queueIndex = 1;
     self.initialBricksArray = [[NSMutableArray alloc] init];
@@ -36,6 +38,8 @@
     self.dropBricksArray = [[NSMutableArray alloc] init];
     self.additionBricksArray = [[NSMutableArray alloc]init];
     self.dropBrickCount = [[NSMutableArray alloc]init];
+    self.BrickStack = [[NSMutableArray alloc] init];
+    
     
     for(short i =0; i<COL_COUNT; i++)
       [self.dropBrickCount addObject:[NSNumber numberWithInt:0]];
@@ -234,14 +238,82 @@
     CGPoint center = CGPointMake(dropBrick.brickToDrop.center.x,dropBrick.brickToDrop.center.y+BOX_HEIGHT*dropBrick.stepsToDrop);
     NSLog(@"%@%d%@%d%@%d",@"row: ",dropBrick.brickToDrop.rowNumber, @" col: ", dropBrick.brickToDrop.colNumber, @" steps: ", dropBrick.stepsToDrop);
     [UIView animateWithDuration: 0.5
+     // options:UIViewAnimationOptionCurveEaseIn;
                      animations: ^{
                        dropBrick.brickToDrop.center = center;
+                       
                      }
                      completion: ^(BOOL finished) {
                      }
      ];
   }
-  [self.dropBricksArray removeAllObjects];  
+  [self.dropBricksArray removeAllObjects];
+}
+
+-(void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+  [super touchesMoved:touches withEvent:event];
+  
+  UITouch *touch = [touches anyObject];
+  CGPoint touchLocation = [touch locationInView:self];
+  
+  for(DPBrick *brick in self.subviews)
+    if(CGRectContainsPoint(brick.frame,touchLocation) &&
+       brick.backgroundColor != [UIColor blackColor] &&
+       ![self.brickStack containsObject:brick] &&
+       [brick isKindOfClass:[DPBrick class]]
+       )
+    {
+      if([self.brickStack count]>0)
+      {
+        DPBrick *tmpBrick = [self.brickStack objectAtIndex:[self.brickStack count]-1];
+        
+        if([DPMove isLegalMove:tmpBrick :brick])
+        {
+          
+          [self.brickStack addObject:brick];
+          [DPBoard hoverBrick:brick];
+        }
+      }
+      else
+      {
+        [self.brickStack addObject:brick];
+        [DPBoard hoverBrick:brick];
+      }
+    }
+  
+}
+
+-(void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+  
+  [super touchesEnded:touches withEvent:event];
+  if([self.brickStack count]>2)
+  {
+    for(DPBrick *brick in self.brickStack)
+    {
+      //[self.MainBoard addToDropArray:brick];
+      //  brick.backgroundColor = brick.assignedColor;
+      [UIView animateWithDuration:0.2
+                       animations: ^{
+                         brick.alpha = 0.0;
+                         
+                       }
+                       completion: ^(BOOL finished) {
+                         [brick removeFromSuperview];
+                       }
+       ];
+      
+    }
+    [self refreshBoard:self.brickStack];
+  }
+  else
+    for(DPBrick *brick in self.brickStack)
+    {
+      brick.backgroundColor = brick.assignedColor;
+    }
+  
+  [self.brickStack removeAllObjects];
 }
 
 

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2F6B3D11178F095D00F7078D /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F6B3D10178F095D00F7078D /* Reachability.m */; };
 		2F6B3D17178FEB2800F7078D /* DPDropBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F6B3D16178FEB2800F7078D /* DPDropBrick.m */; };
+		2F6C76A41795834100735472 /* DPScore.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F6C76A31795834100735472 /* DPScore.m */; };
 		2F897F9D178EE6DB00295803 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F897F98178EE6DB00295803 /* bg.png */; };
 		2F897F9E178EE6DB00295803 /* box_bg_300x380.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F897F99178EE6DB00295803 /* box_bg_300x380.png */; };
 		2F897F9F178EE6DB00295803 /* btn-hover.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F897F9A178EE6DB00295803 /* btn-hover.png */; };
@@ -44,6 +45,8 @@
 		2F6B3D10178F095D00F7078D /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		2F6B3D15178FEB2800F7078D /* DPDropBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPDropBrick.h; sourceTree = "<group>"; };
 		2F6B3D16178FEB2800F7078D /* DPDropBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPDropBrick.m; sourceTree = "<group>"; };
+		2F6C76A21795834100735472 /* DPScore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPScore.h; sourceTree = "<group>"; };
+		2F6C76A31795834100735472 /* DPScore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPScore.m; sourceTree = "<group>"; };
 		2F897F98178EE6DB00295803 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
 		2F897F99178EE6DB00295803 /* box_bg_300x380.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = box_bg_300x380.png; sourceTree = "<group>"; };
 		2F897F9A178EE6DB00295803 /* btn-hover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-hover.png"; sourceTree = "<group>"; };
@@ -208,6 +211,8 @@
 				2FADD7E9178EDF3100CAB0EB /* DPBoard.m */,
 				2F6B3D15178FEB2800F7078D /* DPDropBrick.h */,
 				2F6B3D16178FEB2800F7078D /* DPDropBrick.m */,
+				2F6C76A21795834100735472 /* DPScore.h */,
+				2F6C76A31795834100735472 /* DPScore.m */,
 			);
 			name = Domain;
 			sourceTree = "<group>";
@@ -315,6 +320,7 @@
 				2FADD7EA178EDF3100CAB0EB /* DPBoard.m in Sources */,
 				2F6B3D11178F095D00F7078D /* Reachability.m in Sources */,
 				2F6B3D17178FEB2800F7078D /* DPDropBrick.m in Sources */,
+				2F6C76A41795834100735472 /* DPScore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +418,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DrawPath/DrawPath-Prefix.pch";
 				INFOPLIST_FILE = "DrawPath/DrawPath-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -423,6 +430,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DrawPath/DrawPath-Prefix.pch";
 				INFOPLIST_FILE = "DrawPath/DrawPath-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
