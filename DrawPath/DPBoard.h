@@ -14,11 +14,9 @@
 
 @property (strong,nonatomic) NSArray *colorArray ;
 @property (strong, nonatomic) NSMutableArray *initialBricksArray;
-@property (strong, nonatomic) NSMutableArray *currentBricksArray;
 @property (strong, nonatomic) NSMutableArray *dropBricksArray;
-@property (strong, nonatomic) NSMutableArray *additionBricksArray;
 @property (strong, nonatomic) NSMutableArray *dropBrickCount;
-@property (strong, nonatomic) NSMutableArray *brickStack;
+@property (strong, nonatomic) NSMutableArray *pathBrickStack;
 @property (strong, nonatomic) NSTimer *brickTimer;
 @property(strong,nonatomic) UIView *parentView;
 @property int brickWidth;

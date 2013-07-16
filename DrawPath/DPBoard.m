@@ -16,7 +16,6 @@
 
 @synthesize colorArray;
 @synthesize initialBricksArray;
-@synthesize currentBricksArray;
 @synthesize dropBricksArray;
 @synthesize dropBrickCount;
 @synthesize brickTimer;
@@ -25,7 +24,7 @@
 @synthesize brickHeight;
 @synthesize queueIndex;
 @synthesize counts;
-@synthesize brickStack;
+@synthesize pathBrickStack;
 
 
 -(id)init
@@ -34,11 +33,9 @@
   {
     self.queueIndex = 1;
     self.initialBricksArray = [[NSMutableArray alloc] init];
-    self.currentBricksArray = [[NSMutableArray alloc] init];
     self.dropBricksArray = [[NSMutableArray alloc] init];
-    self.additionBricksArray = [[NSMutableArray alloc]init];
     self.dropBrickCount = [[NSMutableArray alloc]init];
-    self.BrickStack = [[NSMutableArray alloc] init];
+    self.pathBrickStack = [[NSMutableArray alloc] init];
     
     
     for(short i =0; i<COL_COUNT; i++)
@@ -54,6 +51,7 @@
       self.brickWidth = IPAD_BOX_WIDTH;
       self.brickHeight = IPAD_BOX_HEIGHT;
     }
+    
   }
   return self;
 }
@@ -84,7 +82,6 @@
         brick.colNumber = j;
         brick.queueId = self.queueIndex++;
         [self.initialBricksArray addObject:brick];
-        [self.currentBricksArray addObject:brick];
       }
     }
   }
@@ -260,24 +257,24 @@
   for(DPBrick *brick in self.subviews)
     if(CGRectContainsPoint(brick.frame,touchLocation) &&
        brick.backgroundColor != [UIColor blackColor] &&
-       ![self.brickStack containsObject:brick] &&
+       ![self.pathBrickStack containsObject:brick] &&
        [brick isKindOfClass:[DPBrick class]]
        )
     {
-      if([self.brickStack count]>0)
+      if([self.pathBrickStack count]>0)
       {
-        DPBrick *tmpBrick = [self.brickStack objectAtIndex:[self.brickStack count]-1];
+        DPBrick *tmpBrick = [self.pathBrickStack objectAtIndex:[self.pathBrickStack count]-1];
         
         if([DPMove isLegalMove:tmpBrick :brick])
         {
           
-          [self.brickStack addObject:brick];
+          [self.pathBrickStack addObject:brick];
           [DPBoard hoverBrick:brick];
         }
       }
       else
       {
-        [self.brickStack addObject:brick];
+        [self.pathBrickStack addObject:brick];
         [DPBoard hoverBrick:brick];
       }
     }
@@ -288,9 +285,9 @@
 {
   
   [super touchesEnded:touches withEvent:event];
-  if([self.brickStack count]>2)
+  if([self.pathBrickStack count]>2)
   {
-    for(DPBrick *brick in self.brickStack)
+    for(DPBrick *brick in self.pathBrickStack)
     {
       //[self.MainBoard addToDropArray:brick];
       //  brick.backgroundColor = brick.assignedColor;
@@ -305,15 +302,15 @@
        ];
       
     }
-    [self refreshBoard:self.brickStack];
+    [self refreshBoard:self.pathBrickStack];
   }
   else
-    for(DPBrick *brick in self.brickStack)
+    for(DPBrick *brick in self.pathBrickStack)
     {
       brick.backgroundColor = brick.assignedColor;
     }
   
-  [self.brickStack removeAllObjects];
+  [self.pathBrickStack removeAllObjects];
 }
 
 
