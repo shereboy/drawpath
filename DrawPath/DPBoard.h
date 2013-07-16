@@ -8,20 +8,25 @@
 
 #import <Foundation/Foundation.h>
 #import "DPBrick.h"
+#import "Constants.h"
 
 @interface DPBoard : UIView
 
 @property (strong,nonatomic) NSArray *colorArray ;
 @property (strong, nonatomic) NSMutableArray *initialBricksArray;
 @property (strong, nonatomic) NSMutableArray *currentBricksArray;
-@property (strong,nonatomic) NSMutableArray *dropBricksArray;
+@property (strong, nonatomic) NSMutableArray *dropBricksArray;
+@property (strong, nonatomic) NSMutableArray *additionBricksArray;
+@property (strong, nonatomic) NSMutableArray *dropBrickCount;
 @property (strong, nonatomic) NSTimer *brickTimer;
 @property(strong,nonatomic) UIView *parentView;
 @property int brickWidth;
 @property int brickHeight;
+@property int queueIndex;
+@property (strong, nonatomic) NSArray *counts;
 
 -(void) drawBoard:(id)parent;
 +(void) hoverBrick:(id)sender;
 -(void)addToDropArray :(DPBrick*) brick;
--(void)addToDropArray2 :(DPBrick*) brick;
+-(void)dropBricks;
 @end

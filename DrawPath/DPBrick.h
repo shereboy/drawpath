@@ -10,11 +10,14 @@
 
 @interface DPBrick : UIView
 @property (nonatomic) int rowNumber;
+@property (nonatomic) int oldRowNumber;
 @property (nonatomic) int colNumber;
+@property (nonatomic) int oldColNumber;
 @property (nonatomic) int frameWidth;
 @property (nonatomic) int frameHeight;
 @property (nonatomic) int frameX;
 @property (nonatomic) int frameY;
+@property (nonatomic) int queueId;
 @property (strong,nonatomic) UIColor *assignedColor;
 
 @end

@@ -90,7 +90,7 @@
   {
     for(DPBrick *brick in self.BrickStack)
     {
-      [self.MainBoard addToDropArray2:brick];
+      [self.MainBoard addToDropArray:brick];
       //  brick.backgroundColor = brick.assignedColor;
       [brick removeFromSuperview];
     }
@@ -102,6 +102,7 @@
     }
   
   [self.BrickStack removeAllObjects];
+  [self.MainBoard dropBricks];
 }
 
 @end

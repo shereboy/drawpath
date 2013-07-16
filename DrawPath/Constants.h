@@ -13,13 +13,13 @@
 #define BaseAssetUrl @"http://assets.rankmost.com"
 #define TrophyAssetFolder BaseAssetUrl @"/assest/trophyImages"
 
-#define ROW_COUNT 8
-#define COL_COUNT 6
+#define ROW_COUNT 5
+#define COL_COUNT 5
 #define BOX_WIDTH 50
 #define BOX_HEIGHT 50
 #define IPAD_BOX_WIDTH 110
 #define IPAD_BOX_HEIGHT 110
-#define FRAME_TOP_PADDING 10
+#define FRAME_TOP_PADDING 200
 #define FRAME_LEFT_PADDING 10
 #define ANIMATION_DURATION 0
 #define ANIMATION_DISTANCE 500

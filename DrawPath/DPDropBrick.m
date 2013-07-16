@@ -13,4 +13,13 @@
 @synthesize brickToDrop;
 @synthesize stepsToDrop;
 
+-(id)init
+{
+  if (self = [super init])
+  {
+      return self;
+  }
+
+}
+
 @end

@@ -12,11 +12,14 @@
 
 @synthesize colNumber;
 @synthesize rowNumber;
+@synthesize oldColNumber;
+@synthesize oldRowNumber;
 @synthesize assignedColor;
 @synthesize frameWidth;
 @synthesize frameHeight;
 @synthesize frameX;
 @synthesize frameY;
+@synthesize queueId;
 
 - (id)initWithFrame:(CGRect)frame
 {
