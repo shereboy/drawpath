@@ -39,7 +39,7 @@
     
     for(short i =0; i<COL_COUNT; i++)
       [self.dropBrickCount addObject:[NSNumber numberWithInt:0]];
-
+    
     self.colorArray =[NSArray arrayWithObjects:[UIColor redColor],[UIColor blueColor],[UIColor greenColor],[UIColor yellowColor],[UIColor orangeColor], nil];
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
       self.brickWidth = BOX_WIDTH;
@@ -57,7 +57,7 @@
 -(void) resetDropCounts
 {
   for(short i =0; i<COL_COUNT; i++)
-   [self.dropBrickCount replaceObjectAtIndex:i withObject:[NSNumber numberWithInt:0]];
+    [self.dropBrickCount replaceObjectAtIndex:i withObject:[NSNumber numberWithInt:0]];
 }
 
 -(void) drawBoard:(id)parent
@@ -134,27 +134,25 @@
   thisBrick.assignedColor = color;
   thisBrick.queueId = queueId;
   UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0,0,40,40)];
-  label.text = [NSString stringWithFormat:@"%d%@%d", rowNumber, @" - ",colNumber];
-  
-  [thisBrick addSubview:label];
+  label.text = [NSString stringWithFormat:@"%d%@%d", rowNumber, @" : ",colNumber];
   
   if(animated)
   {
-      thisBrick.alpha = 0;
-  CGPoint center = CGPointMake(thisBrick.center.x,thisBrick.center.y-ANIMATION_DISTANCE);
-  thisBrick.center = center;
-  center = CGPointMake(thisBrick.center.x,thisBrick.center.y+ANIMATION_DISTANCE);
-  
-  [UIView animateWithDuration: ANIMATION_DURATION
-                   animations: ^{
-                     thisBrick.alpha = 1;
-                     thisBrick.center = center;
-                   }
-                   completion: ^(BOOL finished) {
-                   }
-   ];
+    thisBrick.alpha = 0;
+    CGPoint center = CGPointMake(thisBrick.center.x,thisBrick.center.y-ANIMATION_DISTANCE);
+    thisBrick.center = center;
+    center = CGPointMake(thisBrick.center.x,thisBrick.center.y+ANIMATION_DISTANCE);
+    
+    [UIView animateWithDuration: ANIMATION_DURATION
+                     animations: ^{
+                       thisBrick.alpha = 1;
+                       thisBrick.center = center;
+                     }
+                     completion: ^(BOOL finished) {
+                     }
+     ];
   }
-
+  
   [self addSubview:thisBrick];
 }
 
@@ -162,8 +160,6 @@
   
   UIButton *button = (UIButton *) sender;
   button.backgroundColor= [UIColor blackColor];
-  CGColorRef colorRef = button.backgroundColor.CGColor;
-  NSString *boxColor = [CIColor colorWithCGColor:colorRef].stringRepresentation;
 }
 
 
@@ -171,42 +167,13 @@
 {
   DPBrick *brick = (DPBrick *) sender;
   
-  
-  
-  //add to top
-  
-  
-  DPBrick* thiBrick =[DPBrick alloc];
-  //NSLog(@"%@%d%@%d", @"col: ",brick.colNumber, @" count: ",[[self.dropBrickCount objectAtIndex:brick.colNumber] intValue] );
-  [self.dropBrickCount replaceObjectAtIndex:brick.colNumber withObject:[NSNumber numberWithInt:[[self.dropBrickCount objectAtIndex:brick.colNumber] intValue]+1]];
-  
-  thiBrick =[[DPBrick alloc]initWithFrame:CGRectMake(brick.frame.origin.x,FRAME_TOP_PADDING-brickHeight*[[self.dropBrickCount objectAtIndex:brick.colNumber] intValue],50,50)];
-  NSUInteger randomIndex = arc4random() % [self.colorArray count];
-  thiBrick.backgroundColor = colorArray[randomIndex];
-  //thiBrick.backgroundColor = [UIColor purpleColor];
-  thiBrick.assignedColor = colorArray[randomIndex];
-  thiBrick.colNumber = brick.colNumber;
-  thiBrick.rowNumber = -[[self.dropBrickCount objectAtIndex:brick.colNumber] intValue];
-  thiBrick.oldRowNumber = thiBrick.rowNumber;
-  thiBrick.queueId = self.queueIndex++;
-  
-
-//  NSLog(@"%@%d%@%d", @"row: ",thiBrick.rowNumber, @" col: ",thiBrick.colNumber);
-  
-  [self addSubview:thiBrick];
-  
-  //add to top
-  
-  
   for(DPBrick *tmpBrick in self.subviews)
     if([tmpBrick isKindOfClass:[DPBrick class]])
     {
-      if (tmpBrick.oldRowNumber<0)
-//        NSLog(@"%@%d%@%d", @"checking to drop row: ",tmpBrick.rowNumber, @" col: ",tmpBrick.colNumber);
-      
-              NSLog(@"%@%d%@%d%@%d", @"checking to drop row: ",tmpBrick.rowNumber, @" : ",tmpBrick.colNumber, @" : ", brick.colNumber);
-      if(tmpBrick.colNumber == brick.colNumber && tmpBrick.oldRowNumber < brick.oldRowNumber)
+      if(tmpBrick.colNumber == brick.colNumber && tmpBrick.frame.origin.y < brick.frame.origin.y)
       {
+        if(tmpBrick.rowNumber<0)
+          NSLog(@"%@%d%@%d%@%d",@"adding", tmpBrick.rowNumber, @":" ,tmpBrick.colNumber, @":",tmpBrick.queueId);
         BOOL isIncremented = NO;
         for(DPDropBrick* dropBrick in self.dropBricksArray)
         {
@@ -215,31 +182,44 @@
             dropBrick.stepsToDrop++;
             dropBrick.brickToDrop.rowNumber++;
             isIncremented = YES;
+            
           }
         }
         if(!isIncremented)
         {
-   
           DPDropBrick* tmpDropBrick = [[DPDropBrick alloc]init];
           tmpDropBrick.brickToDrop = tmpBrick;
-                  NSLog(@"%@%d%@%d", @"Adding to drop row: ",tmpDropBrick.brickToDrop.rowNumber, @" col: ",tmpDropBrick.brickToDrop.colNumber);
-          if(tmpDropBrick.brickToDrop.oldRowNumber>=0)
-          {
-            tmpDropBrick.stepsToDrop = 1;
-            tmpDropBrick.brickToDrop.rowNumber++;
-          }
-          else
-          {
-            tmpDropBrick.stepsToDrop = -tmpDropBrick.brickToDrop.rowNumber;
-            tmpDropBrick.brickToDrop.rowNumber+=tmpDropBrick.stepsToDrop-1;
-            //tmpDropBrick.brickToDrop.oldRowNumber = tmpDropBrick.brickToDrop.rowNumber;
-          }
+          tmpDropBrick.stepsToDrop = 1;
+          tmpDropBrick.brickToDrop.rowNumber++;
           
           [self.dropBricksArray addObject: tmpDropBrick];
         }
       }
- // NSLog(@"%@%d%@%d", @"Skipping : ",tmpBrick.rowNumber, @" col: ",tmpBrick.colNumber);
     }
+}
+
+-(void) refreshBoard:(NSMutableArray *)brickStack
+{
+  for(DPBrick *brick in brickStack )
+  {
+    [self.dropBrickCount replaceObjectAtIndex:brick.colNumber withObject:[NSNumber numberWithInt:[[self.dropBrickCount objectAtIndex:brick.colNumber] intValue]+1]];
+    NSUInteger randomIndex = arc4random() % [self.colorArray count];
+    
+    [self drawRectangle:
+     brick.frame.origin.x  :
+     FRAME_TOP_PADDING-brickHeight*[[self.dropBrickCount objectAtIndex:brick.colNumber] intValue] :
+     colorArray[randomIndex] :
+     -[[self.dropBrickCount objectAtIndex:brick.colNumber] intValue] :
+     brick.colNumber :
+     self.queueIndex++:
+     false];  //add to top
+  }
+  
+  for(DPBrick *brick in brickStack)
+  {
+    [self addToDropArray:brick];
+  }
+  [self dropBricks];
 }
 
 
@@ -250,8 +230,9 @@
   //return;
   for(DPDropBrick* dropBrick in self.dropBricksArray)
   {
-    CGPoint center = CGPointMake(dropBrick.brickToDrop.center.x,dropBrick.brickToDrop.center.y+BOX_HEIGHT*dropBrick.stepsToDrop);
     
+    CGPoint center = CGPointMake(dropBrick.brickToDrop.center.x,dropBrick.brickToDrop.center.y+BOX_HEIGHT*dropBrick.stepsToDrop);
+    NSLog(@"%@%d%@%d%@%d",@"row: ",dropBrick.brickToDrop.rowNumber, @" col: ", dropBrick.brickToDrop.colNumber, @" steps: ", dropBrick.stepsToDrop);
     [UIView animateWithDuration: 0.5
                      animations: ^{
                        dropBrick.brickToDrop.center = center;
@@ -260,13 +241,7 @@
                      }
      ];
   }
-  [self.dropBricksArray removeAllObjects];
-}
-
-
--(void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
-{
-  
+  [self.dropBricksArray removeAllObjects];  
 }
 
 

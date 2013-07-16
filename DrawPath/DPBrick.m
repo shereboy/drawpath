@@ -20,6 +20,7 @@
 @synthesize frameX;
 @synthesize frameY;
 @synthesize queueId;
+@synthesize isNewlyAdded;
 
 - (id)initWithFrame:(CGRect)frame
 {

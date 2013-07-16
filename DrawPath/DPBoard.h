@@ -29,4 +29,5 @@
 +(void) hoverBrick:(id)sender;
 -(void)addToDropArray :(DPBrick*) brick;
 -(void)dropBricks;
+-(void) refreshBoard:(NSMutableArray*)brickStack;
 @end
