@@ -289,9 +289,7 @@
   {
     for(DPBrick *brick in self.pathBrickStack)
     {
-      //[self.MainBoard addToDropArray:brick];
-      //  brick.backgroundColor = brick.assignedColor;
-      [UIView animateWithDuration:0.2
+      /*[UIView animateWithDuration:0.5
                        animations: ^{
                          brick.alpha = 0.0;
                          
@@ -299,8 +297,8 @@
                        completion: ^(BOOL finished) {
                          [brick removeFromSuperview];
                        }
-       ];
-      
+       ];*/
+      [brick removeFromSuperview];
     }
     [self refreshBoard:self.pathBrickStack];
   }
