@@ -36,6 +36,7 @@
 {
   MainBoard = [[DPBoard alloc] init];
   [self.view addSubview:MainBoard];
+  NSLOg(@"loaded");
 }
 
 -(IBAction)shuffleBricks:(id)sender
