@@ -19,6 +19,7 @@
 @property (nonatomic) int frameY;
 @property (nonatomic) int queueId;
 @property (strong,nonatomic) UIColor *assignedColor;
-@property BOOL isNewlyAdded;
+@property (strong, nonatomic) UIImage *brickImage;
+-(void)setImage:(NSString*)imageName;
 
 @end

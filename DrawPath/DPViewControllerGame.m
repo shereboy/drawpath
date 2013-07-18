@@ -29,16 +29,18 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+
 }
 
 - (void) viewDidAppear:(BOOL)animated
 {
-  MainBoard = [DPBoard alloc];
-  [MainBoard init];
+  MainBoard = [[DPBoard alloc] init];
   [self.view addSubview:MainBoard];
-  [MainBoard drawBoard:self.view] ;
-  
-  // [self drawBoard];
+}
+
+-(IBAction)shuffleBricks:(id)sender
+{
+  [MainBoard shuffleBoard];
 }
 
 @end

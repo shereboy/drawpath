@@ -15,11 +15,11 @@
 @implementation DPBoard
 
 @synthesize colorArray;
+@synthesize brickImageArray;
 @synthesize initialBricksArray;
 @synthesize dropBricksArray;
 @synthesize dropBrickCount;
 @synthesize brickTimer;
-@synthesize parentView;
 @synthesize brickWidth;
 @synthesize brickHeight;
 @synthesize queueIndex;
@@ -42,6 +42,9 @@
       [self.dropBrickCount addObject:[NSNumber numberWithInt:0]];
     
     self.colorArray =[NSArray arrayWithObjects:[UIColor redColor],[UIColor blueColor],[UIColor greenColor],[UIColor yellowColor],[UIColor orangeColor], nil];
+    self.brickImageArray = [NSArray arrayWithObjects: @"gri_kare.png", @"kirmizi_kare.png", @"mavi_kare.png", @"mor_kare.png", @"sari_kare.png", @"yesil_kare.png",nil];
+    
+    
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
       self.brickWidth = BOX_WIDTH;
       self.brickHeight = BOX_HEIGHT;
@@ -51,7 +54,7 @@
       self.brickWidth = IPAD_BOX_WIDTH;
       self.brickHeight = IPAD_BOX_HEIGHT;
     }
-    
+    [self drawBoard];
   }
   return self;
 }
@@ -62,9 +65,8 @@
     [self.dropBrickCount replaceObjectAtIndex:i withObject:[NSNumber numberWithInt:0]];
 }
 
--(void) drawBoard:(id)parent
+-(void) drawBoard
 {
-  parentView = (UIView*)parent;
   for (int i = 0; i<ROW_COUNT ; i++) {
     for (int j = 0; j<COL_COUNT; j++)
     {
@@ -76,8 +78,8 @@
         
         brick.frameX=(j*self.brickWidth+FRAME_LEFT_PADDING);
         brick.frameY=(i*self.brickHeight+FRAME_TOP_PADDING);
-        
         brick.assignedColor = colorArray[randomIndex];
+        [brick setImage: brickImageArray [randomIndex]];
         brick.rowNumber = i;
         brick.colNumber = j;
         brick.queueId = self.queueIndex++;
@@ -132,10 +134,13 @@
   thisBrick.oldRowNumber = rowNumber;
   
   thisBrick.backgroundColor = color;
+  
+  NSUInteger randomIndex = arc4random() % [self.brickImageArray count];
+
+  [thisBrick setImage: brickImageArray [randomIndex]];
+  
   thisBrick.assignedColor = color;
   thisBrick.queueId = queueId;
-  UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0,0,40,40)];
-  label.text = [NSString stringWithFormat:@"%d%@%d", rowNumber, @" : ",colNumber];
   
   if(animated)
   {
@@ -161,6 +166,7 @@
   
   UIButton *button = (UIButton *) sender;
   button.backgroundColor= [UIColor blackColor];
+
 }
 
 
@@ -234,7 +240,7 @@
     
     CGPoint center = CGPointMake(dropBrick.brickToDrop.center.x,dropBrick.brickToDrop.center.y+BOX_HEIGHT*dropBrick.stepsToDrop);
     NSLog(@"%@%d%@%d%@%d",@"row: ",dropBrick.brickToDrop.rowNumber, @" col: ", dropBrick.brickToDrop.colNumber, @" steps: ", dropBrick.stepsToDrop);
-    [UIView animateWithDuration: 0.5
+    [UIView animateWithDuration: 0.1
      // options:UIViewAnimationOptionCurveEaseIn;
                      animations: ^{
                        dropBrick.brickToDrop.center = center;
@@ -246,6 +252,59 @@
   }
   [self.dropBricksArray removeAllObjects];
 }
+
+#pragma mark Shuffle
+
+-(void) shuffleBoard
+{
+  NSLog(@"SHUFFLE CALLED");
+  NSMutableArray* BrickArray = [[NSMutableArray alloc]init];
+  for(DPBrick *brick in self.subviews)
+  {
+    [BrickArray addObject:brick];
+    [brick removeFromSuperview];
+  }
+  for (short r = 0; r<SHUFFLE_LOOP_REPETITION; r++) {
+    for(short i = 0; i < [BrickArray count]; i++)
+    {
+      NSUInteger randomIndex = arc4random() % [BrickArray count];
+      [self swapBricks:[BrickArray objectAtIndex:i] :[BrickArray objectAtIndex:randomIndex]];
+    }
+  }
+  
+  short brickIndex = 0;
+  
+  for (int i = 0; i<ROW_COUNT ; i++) {
+    for (int j = 0; j<COL_COUNT; j++)
+    {
+      if (j !=0 && j%COL_COUNT == 0) continue;
+      else
+      {
+        DPBrick *brickToInsert = [BrickArray objectAtIndex:brickIndex];
+        [self drawRectangle:(j*self.brickWidth+FRAME_LEFT_PADDING)
+                           :(i*self.brickHeight+FRAME_TOP_PADDING)
+                           :brickToInsert.assignedColor
+                           :i
+                           :j
+                           :self.queueIndex++
+                           :NO
+         ];
+        brickIndex++;
+      }
+    }
+  }
+  [BrickArray removeAllObjects];
+  
+}
+
+-(void) swapBricks:(DPBrick *)brickA:(DPBrick *)brickB
+{
+  DPBrick* tmpBrick = brickA;
+  brickA = brickB;
+  brickB = tmpBrick;
+}
+
+#pragma mark Touch Handlers
 
 -(void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -288,18 +347,7 @@
   if([self.pathBrickStack count]>2)
   {
     for(DPBrick *brick in self.pathBrickStack)
-    {
-      /*[UIView animateWithDuration:0.5
-                       animations: ^{
-                         brick.alpha = 0.0;
-                         
-                       }
-                       completion: ^(BOOL finished) {
-                         [brick removeFromSuperview];
-                       }
-       ];*/
       [brick removeFromSuperview];
-    }
     [self refreshBoard:self.pathBrickStack];
   }
   else

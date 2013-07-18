@@ -7,6 +7,7 @@
 //
 
 #import "DPBrick.h"
+#import "Constants.h"
 
 @implementation DPBrick
 
@@ -20,15 +21,23 @@
 @synthesize frameX;
 @synthesize frameY;
 @synthesize queueId;
-@synthesize isNewlyAdded;
+@synthesize brickImage;
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-    }
+        }
     return self;
+}
+
+-(void)setImage:(NSString*)imageName
+{
+  self.brickImage = [UIImage imageNamed:imageName];
+  UIImageView *imgView = [[UIImageView alloc] initWithImage:self.brickImage];
+  imgView.frame = CGRectMake(0,0,BOX_WIDTH,BOX_HEIGHT);
+  [self addSubview:imgView];
 }
 
 

@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F211C9A1796DE790044FFD6 /* gri_kare.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F211C941796DE790044FFD6 /* gri_kare.png */; };
+		2F211C9B1796DE790044FFD6 /* kirmizi_kare.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F211C951796DE790044FFD6 /* kirmizi_kare.png */; };
+		2F211C9C1796DE790044FFD6 /* mavi_kare.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F211C961796DE790044FFD6 /* mavi_kare.png */; };
+		2F211C9D1796DE790044FFD6 /* mor_kare.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F211C971796DE790044FFD6 /* mor_kare.png */; };
+		2F211C9E1796DE790044FFD6 /* sari_kare.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F211C981796DE790044FFD6 /* sari_kare.png */; };
+		2F211C9F1796DE790044FFD6 /* yesil_kare.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F211C991796DE790044FFD6 /* yesil_kare.png */; };
 		2F6B3D11178F095D00F7078D /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F6B3D10178F095D00F7078D /* Reachability.m */; };
 		2F6B3D17178FEB2800F7078D /* DPDropBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F6B3D16178FEB2800F7078D /* DPDropBrick.m */; };
 		2F6C76A41795834100735472 /* DPScore.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F6C76A31795834100735472 /* DPScore.m */; };
@@ -41,6 +47,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2F211C941796DE790044FFD6 /* gri_kare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gri_kare.png; sourceTree = "<group>"; };
+		2F211C951796DE790044FFD6 /* kirmizi_kare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kirmizi_kare.png; sourceTree = "<group>"; };
+		2F211C961796DE790044FFD6 /* mavi_kare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mavi_kare.png; sourceTree = "<group>"; };
+		2F211C971796DE790044FFD6 /* mor_kare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mor_kare.png; sourceTree = "<group>"; };
+		2F211C981796DE790044FFD6 /* sari_kare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sari_kare.png; sourceTree = "<group>"; };
+		2F211C991796DE790044FFD6 /* yesil_kare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yesil_kare.png; sourceTree = "<group>"; };
 		2F6B3D0F178F095D00F7078D /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		2F6B3D10178F095D00F7078D /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		2F6B3D15178FEB2800F7078D /* DPDropBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPDropBrick.h; sourceTree = "<group>"; };
@@ -104,6 +116,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2F211CA01796DE810044FFD6 /* kareler */ = {
+			isa = PBXGroup;
+			children = (
+				2F211C941796DE790044FFD6 /* gri_kare.png */,
+				2F211C951796DE790044FFD6 /* kirmizi_kare.png */,
+				2F211C961796DE790044FFD6 /* mavi_kare.png */,
+				2F211C971796DE790044FFD6 /* mor_kare.png */,
+				2F211C981796DE790044FFD6 /* sari_kare.png */,
+				2F211C991796DE790044FFD6 /* yesil_kare.png */,
+			);
+			name = kareler;
+			sourceTree = "<group>";
+		};
 		2F897F96178EE69400295803 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +143,7 @@
 		2F897F97178EE6AD00295803 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				2F211CA01796DE810044FFD6 /* kareler */,
 				2F897F98178EE6DB00295803 /* bg.png */,
 				2F897F99178EE6DB00295803 /* box_bg_300x380.png */,
 				2F897F9A178EE6DB00295803 /* btn-hover.png */,
@@ -301,6 +327,12 @@
 				2F897F9F178EE6DB00295803 /* btn-hover.png in Resources */,
 				2F897FA0178EE6DB00295803 /* btn.png in Resources */,
 				2F897FA1178EE6DB00295803 /* logo.png in Resources */,
+				2F211C9A1796DE790044FFD6 /* gri_kare.png in Resources */,
+				2F211C9B1796DE790044FFD6 /* kirmizi_kare.png in Resources */,
+				2F211C9C1796DE790044FFD6 /* mavi_kare.png in Resources */,
+				2F211C9D1796DE790044FFD6 /* mor_kare.png in Resources */,
+				2F211C9E1796DE790044FFD6 /* sari_kare.png in Resources */,
+				2F211C9F1796DE790044FFD6 /* yesil_kare.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

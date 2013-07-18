@@ -13,6 +13,7 @@
 @interface DPBoard : UIView
 
 @property (strong,nonatomic) NSArray *colorArray ;
+@property (strong,nonatomic) NSArray *brickImageArray;
 @property (strong, nonatomic) NSMutableArray *initialBricksArray;
 @property (strong, nonatomic) NSMutableArray *dropBricksArray;
 @property (strong, nonatomic) NSMutableArray *dropBrickCount;
@@ -24,10 +25,11 @@
 @property int queueIndex;
 @property (strong, nonatomic) NSArray *counts;
 
--(void) drawBoard:(id)parent;
+-(void) drawBoard;
 +(void) hoverBrick:(id)sender;
 -(void)addToDropArray :(DPBrick*) brick;
 -(void)dropBricks;
 -(void) refreshBoard:(NSMutableArray*)brickStack;
 -(void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;
+-(void) shuffleBoard;
 @end

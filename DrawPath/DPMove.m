@@ -14,7 +14,7 @@
 {
   if(brickA.colNumber == brickB.colNumber && brickA.rowNumber == brickB.rowNumber)
     return NO;
-  if(brickA.assignedColor != brickB.assignedColor)
+  if(brickA.brickImage!= brickB.brickImage)
     return NO;
   if(abs(brickA.rowNumber-brickB.rowNumber)<=1 && abs(brickA.colNumber-brickB.colNumber)<=1)
     return YES;
